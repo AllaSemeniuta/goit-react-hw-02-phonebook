@@ -8,6 +8,10 @@ export class ContactForm extends Component {
     number: '',
   };
 
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
+  
   handleChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: [value] });
@@ -15,8 +19,8 @@ export class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const name = e.target.elements.name.value;
-    const number = e.target.elements.number.value;
+    const name = this.state.name;
+    const number = this.state.number;
     const contact = {
       id: nanoid(),
       name,
@@ -64,7 +68,3 @@ export class ContactForm extends Component {
     );
   }
 }
-
-ContactForm.propTypes = {
-  onChange: PropTypes.func,
-};
